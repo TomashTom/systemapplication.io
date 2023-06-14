@@ -1,0 +1,90 @@
+﻿@model System.Web.Project.Models.ViewModels.EventViewModel
+@using System.Web
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="display-4">Edit</h1>
+
+<h4>Event</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" id="edit-event">
+            @Html.HiddenFor(m => m.UserId)
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Event.Id" />
+            <div class="form-group">
+                <label asp-for="Event.Name" class="control-label"></label>
+                <input asp-for="Event.Name" class="form-control" />
+                <span asp-validation-for="Event.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Event.Description" class="control-label"></label>
+                <input asp-for="Event.Description" class="form-control" />
+                <span asp-validation-for="Event.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Event.StartTime" class="control-label"></label>
+                <input asp-for="Event.StartTime" class="form-control" />
+                <span asp-validation-for="Event.StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Event.EndTime" class="control-label"></label>
+                <input asp-for="Event.EndTime" class="form-control" />
+                <span asp-validation-for="Event.EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Location</label>
+                @Html.DropDownList("Location", Model.Location, "Select a Location", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function SetSelectedLocation(Location) {
+        var locations = document.getElementById('Location'),
+            loc, i;
+
+        for (i = 0; i < locations.length; i++) {
+            loc = locations[i];
+            if (loc.innerText === Location) {
+                loc.selected = true;
+            }
+        }
+    }
+
+    var eventLocation = "@Html.Raw(Model.LocationName)";
+
+    document.addEventListener('DOMContentLoaded', function () {
+        SetSelectedLocation(eventLocation);
+    });
+</script>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@* Additional Features and Tools *@
+@section Scripts {
+    <script>
+        // Add an interactive feature here
+        $(document).ready(function () {
+            // Your custom JavaScript code
+            $("#edit-event").validate();
+        });
+    </script>
+
+    @* Additional libraries or scripts *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
+    @* Additional CSS or styles *@
+    <style>
+        /* Your custom CSS styles */
+    </style>
+}

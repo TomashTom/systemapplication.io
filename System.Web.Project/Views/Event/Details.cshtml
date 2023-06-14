@@ -1,0 +1,55 @@
+﻿@model System.Web.Project.Models.Event
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="display-4">Details</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Event Details</h4>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-2">Name</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Name)</dd>
+
+            <dt class="col-sm-2">Description</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Description)</dd>
+
+            <dt class="col-sm-2">Start Time</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.StartTime)</dd>
+
+            <dt class="col-sm-2">End Time</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.EndTime)</dd>
+
+            @*<dt class="col-sm-2">Location</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Location.Name)</dd>*@
+        </dl>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@* Additional Features and Tools *@
+@section Scripts {
+    <script>
+        // Add an interactive feature here
+        $(document).ready(function () {
+            // Your custom JavaScript code
+        });
+    </script>
+
+    @* Additional libraries or scripts *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    @* Additional CSS or styles *@
+    <style>
+        /* Your custom CSS styles */
+    </style>
+}
